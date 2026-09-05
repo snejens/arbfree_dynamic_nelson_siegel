@@ -165,7 +165,7 @@ def kalman_filter(synth_yields, theta, A, H, Q, B, exclude_first_observations_fo
     x, loglikelihood, loglikelihood_contribution, P, F, v, x_next = _kalman_filter_inner(
         *first_args_numpy, B=numpyify_single(B),
         exclude_first_observations_for_loglikelihood=exclude_first_observations_for_loglikelihood,
-        c=c)  # , no_tqdm=no_tqdm)
+        c=numpyify_single(c))  # , no_tqdm=no_tqdm)
     if x is not None and isinstance(synth_yields, pd.DataFrame):
         x = pd.DataFrame(x, index=synth_yields.index)
     return x, loglikelihood, loglikelihood_contribution, P, F, v, x_next
